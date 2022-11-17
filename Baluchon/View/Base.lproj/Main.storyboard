@@ -259,8 +259,8 @@
                             </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="jaR-62-4WR"/>
-                        <color key="backgroundColor" systemColor="systemBlueColor"/>
-                        <color key="tintColor" systemColor="tintColor"/>
+                        <color key="backgroundColor" systemColor="systemGray6Color"/>
+                        <color key="tintColor" red="0.99414526940000003" green="0.86685189740000002" blue="0.93851885479999997" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                         <constraints>
                             <constraint firstItem="jaR-62-4WR" firstAttribute="trailing" secondItem="qCg-Ew-T8J" secondAttribute="trailing" id="3xK-Yy-IAh"/>
                             <constraint firstItem="qCg-Ew-T8J" firstAttribute="top" secondItem="jaR-62-4WR" secondAttribute="top" id="4ku-5G-sIA"/>
@@ -299,13 +299,14 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="Nsp-l1-pKe">
-                                <rect key="frame" x="16" y="44" width="288" height="387"/>
+                            <stackView opaque="NO" contentMode="scaleAspectFit" axis="vertical" distribution="equalSpacing" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="Nsp-l1-pKe">
+                                <rect key="frame" x="16" y="54" width="288" height="367"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" showsMenuAsPrimaryAction="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" changesSelectionAsPrimaryAction="YES" translatesAutoresizingMaskIntoConstraints="NO" id="3lP-5V-cke" userLabel="Button Top">
                                         <rect key="frame" x="0.0" y="0.0" width="288" height="33"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
+                                            <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="33" id="4GU-ab-srK"/>
                                             <constraint firstAttribute="height" constant="33" id="Ety-Iv-3qW"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -323,8 +324,11 @@
                                         </userDefinedRuntimeAttributes>
                                     </button>
                                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="N64-PF-8xr" userLabel="Text View Top">
-                                        <rect key="frame" x="0.0" y="42" width="288" height="147"/>
+                                        <rect key="frame" x="0.0" y="42" width="288" height="137"/>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="137" id="DVf-8s-Uul"/>
+                                        </constraints>
                                         <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,</string>
                                         <color key="textColor" systemColor="labelColor"/>
                                         <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="18"/>
@@ -336,8 +340,11 @@
                                         </userDefinedRuntimeAttributes>
                                     </textView>
                                     <button opaque="NO" contentMode="scaleToFill" showsMenuAsPrimaryAction="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="t23-vY-7UU" userLabel="Button Bottom">
-                                        <rect key="frame" x="0.0" y="198" width="288" height="33"/>
+                                        <rect key="frame" x="0.0" y="188" width="288" height="33"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="33" id="rwm-fk-oaz"/>
+                                        </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <menu key="menu" id="iUh-je-y7F">
                                             <children>
@@ -353,8 +360,11 @@
                                         </userDefinedRuntimeAttributes>
                                     </button>
                                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hJH-oq-ls5" userLabel="Text View Bottom">
-                                        <rect key="frame" x="0.0" y="240" width="288" height="147"/>
+                                        <rect key="frame" x="0.0" y="230" width="288" height="137"/>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="137" id="1d5-Ju-vYf"/>
+                                        </constraints>
                                         <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,</string>
                                         <color key="textColor" systemColor="labelColor"/>
                                         <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="18"/>
@@ -369,9 +379,7 @@
                                 <constraints>
                                     <constraint firstItem="N64-PF-8xr" firstAttribute="width" secondItem="hJH-oq-ls5" secondAttribute="width" id="EhH-4Z-69q"/>
                                     <constraint firstItem="N64-PF-8xr" firstAttribute="top" secondItem="3lP-5V-cke" secondAttribute="bottom" constant="9" id="Huj-kR-xy6"/>
-                                    <constraint firstItem="N64-PF-8xr" firstAttribute="centerX" secondItem="Nsp-l1-pKe" secondAttribute="centerX" id="NDk-EU-HzJ"/>
                                     <constraint firstItem="N64-PF-8xr" firstAttribute="height" secondItem="hJH-oq-ls5" secondAttribute="height" id="NFQ-rj-9uX"/>
-                                    <constraint firstItem="hJH-oq-ls5" firstAttribute="centerX" secondItem="Nsp-l1-pKe" secondAttribute="centerX" id="cHt-Bw-vZ7"/>
                                     <constraint firstItem="3lP-5V-cke" firstAttribute="width" secondItem="t23-vY-7UU" secondAttribute="width" id="kDU-0v-8t5"/>
                                     <constraint firstItem="N64-PF-8xr" firstAttribute="width" secondItem="hJH-oq-ls5" secondAttribute="width" id="lSl-b8-VUa"/>
                                     <constraint firstItem="3lP-5V-cke" firstAttribute="height" secondItem="t23-vY-7UU" secondAttribute="height" id="wai-QT-hYQ"/>
@@ -382,10 +390,9 @@
                         <color key="backgroundColor" systemColor="systemGray6Color"/>
                         <constraints>
                             <constraint firstItem="Nsp-l1-pKe" firstAttribute="width" secondItem="Gpo-vI-19i" secondAttribute="width" multiplier="0.9" id="7YP-T8-rQ3"/>
-                            <constraint firstItem="Nsp-l1-pKe" firstAttribute="height" secondItem="Gpo-vI-19i" secondAttribute="height" id="BHz-3f-CUC"/>
-                            <constraint firstItem="Nsp-l1-pKe" firstAttribute="top" secondItem="Gpo-vI-19i" secondAttribute="top" id="LHa-jG-wby"/>
+                            <constraint firstItem="Gpo-vI-19i" firstAttribute="bottom" secondItem="Nsp-l1-pKe" secondAttribute="bottom" constant="10" id="F7A-0o-bIL"/>
+                            <constraint firstItem="Nsp-l1-pKe" firstAttribute="top" secondItem="Gpo-vI-19i" secondAttribute="top" constant="10" id="Y96-uV-ioV"/>
                             <constraint firstItem="Nsp-l1-pKe" firstAttribute="centerX" secondItem="Zl9-Yx-lj9" secondAttribute="centerX" id="Yn5-pp-8Vi"/>
-                            <constraint firstItem="Nsp-l1-pKe" firstAttribute="bottom" secondItem="Gpo-vI-19i" secondAttribute="bottom" id="aT0-z2-pQi"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Traduction" id="VbW-MX-6VW"/>
@@ -414,7 +421,7 @@
         <!--Météo-->
         <scene sceneID="tjf-Z2-yWs">
             <objects>
-                <pageViewController autoresizesArchivedViewToFullSize="NO" transitionStyle="scroll" navigationOrientation="horizontal" spineLocation="none" id="0gH-Sk-TDY" customClass="WeatherViewController" customModule="Baluchon" customModuleProvider="target" sceneMemberID="viewController">
+                <pageViewController autoresizesArchivedViewToFullSize="NO" transitionStyle="scroll" navigationOrientation="horizontal" spineLocation="none" id="0gH-Sk-TDY" customClass="WeatherPageViewController" customModule="Baluchon" customModuleProvider="target" sceneMemberID="viewController">
                     <navigationItem key="navigationItem" title="Météo" id="8kO-Hq-E9x"/>
                 </pageViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ktA-Xe-lmG" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -424,7 +431,7 @@
         <!--Météo-->
         <scene sceneID="1dT-dz-F1x">
             <objects>
-                <viewController storyboardIdentifier="ParisViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Q3s-l1-wXI" customClass="MeteoViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ParisViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Q3s-l1-wXI" customClass="WeatherViewController" customModule="Baluchon" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="l3i-4s-gb8">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -518,7 +525,7 @@
         <!--Météo-->
         <scene sceneID="XR2-Xc-eN0">
             <objects>
-                <viewController storyboardIdentifier="NewYorkViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="GyT-bg-ru4" customClass="MeteoViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="NewYorkViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="GyT-bg-ru4" customClass="WeatherViewController" customModule="Baluchon" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Y8l-Qd-kWx">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -612,7 +619,7 @@
         <!--Météo-->
         <scene sceneID="3dv-tt-fyx">
             <objects>
-                <viewController storyboardIdentifier="LocationViewContoller" useStoryboardIdentifierAsRestorationIdentifier="YES" id="JMi-nY-O0Y" customClass="MeteoViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="LocationViewContoller" useStoryboardIdentifierAsRestorationIdentifier="YES" id="JMi-nY-O0Y" customClass="WeatherViewController" customModule="Baluchon" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="R06-g5-KCc">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -718,9 +725,6 @@
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
-        <systemColor name="systemBlueColor">
-            <color red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </systemColor>
         <systemColor name="systemCyanColor">
             <color red="0.19607843137254902" green="0.67843137254901964" blue="0.90196078431372551" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
@@ -729,9 +733,6 @@
         </systemColor>
         <systemColor name="systemYellowColor">
             <color red="1" green="0.80000000000000004" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </systemColor>
-        <systemColor name="tintColor">
-            <color red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

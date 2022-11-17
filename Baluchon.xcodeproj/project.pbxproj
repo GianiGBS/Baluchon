@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C22EB64E2926B64000E3086C /* WeatherPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C22EB64D2926B64000E3086C /* WeatherPageViewController.swift */; };
 		C25356892914216D008E9E77 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C25356882914216D008E9E77 /* CoreLocation.framework */; };
 		C253568F29184DFA008E9E77 /* TranslateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C253568E29184DFA008E9E77 /* TranslateViewController.swift */; };
 		C253569129184E19008E9E77 /* WeatherViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C253569029184E19008E9E77 /* WeatherViewController.swift */; };
@@ -23,6 +24,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		C22EB64D2926B64000E3086C /* WeatherPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherPageViewController.swift; sourceTree = "<group>"; };
 		C25356852912B3BC008E9E77 /* Secrets.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Secrets.xcconfig; sourceTree = "<group>"; };
 		C25356882914216D008E9E77 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		C253568E29184DFA008E9E77 /* TranslateViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TranslateViewController.swift; sourceTree = "<group>"; };
@@ -119,6 +121,7 @@
 				C2D1641E2908A2BB004EB5B6 /* ChangeViewController.swift */,
 				C253568E29184DFA008E9E77 /* TranslateViewController.swift */,
 				C253569029184E19008E9E77 /* WeatherViewController.swift */,
+				C22EB64D2926B64000E3086C /* WeatherPageViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -194,6 +197,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C22EB64E2926B64000E3086C /* WeatherPageViewController.swift in Sources */,
 				C2D1642B290EC756004EB5B6 /* Weather.swift in Sources */,
 				C253569129184E19008E9E77 /* WeatherViewController.swift in Sources */,
 				C2D1641F2908A2BB004EB5B6 /* ChangeViewController.swift in Sources */,
