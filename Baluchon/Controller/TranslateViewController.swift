@@ -13,13 +13,6 @@ class TranslateViewController: UIViewController {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-        // Verification clé
-        let apiKey = Bundle.main.object(forInfoDictionaryKey: "API_TANSLATE_KEY") as? String
-        guard let key = apiKey, !key.isEmpty else {
-            print("API key does not exist")
-            return
-        }
-        print("REST API key:", key)
     }
     
 
@@ -33,4 +26,20 @@ class TranslateViewController: UIViewController {
     }
     */
 
+}
+extension TranslateViewController: UIPickerViewDataSource {
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        return 1
+        
+    }
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        return Languages.list.count
+        
+    }
+}
+
+extension TranslateViewController: UIPickerViewDelegate {
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        return Languages.list[row].name
+    }
 }

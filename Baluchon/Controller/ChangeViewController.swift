@@ -8,28 +8,74 @@
 import UIKit
 
 class ChangeViewController: UIViewController {
-
+    
+    
+    @IBOutlet weak var changeMoneyFromButton: UIButton!
+    @IBOutlet weak var symbolFrom: UILabel!
+    @IBOutlet weak var amountFrom: UITextField!
+    @IBOutlet weak var exchangeRateFrom: UILabel!
+    
+    
+    @IBOutlet weak var changeMoneyToButton: UIButton!
+    @IBOutlet weak var symbolTo: UILabel!
+    @IBOutlet weak var amountTo: UITextField!
+    @IBOutlet weak var exchangeRateTo: UILabel!
+    
+    // MARK: - Navigation
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        // Verification clé
-        let apiKey = Bundle.main.object(forInfoDictionaryKey: "API_CHANGE_KEY") as? String
-        guard let key = apiKey, !key.isEmpty else {
-            print("API key does not exist")
-            return
-        }
-        print("REST API key:", key)
+        setPopChangeMoneyFromButton()
+        setPopChangeMoneyToButton()
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    // MARK: - Selected Style Button
+    
+    enum Style {
+        case USD, EUR
     }
-    */
+    
+    func setStyleButton(_ style: Style) {
+        switch style {
+        case .USD:
+            symbolFrom.text = "$"
+            symbolTo.text = "€"
+            exchangeRateFrom.text = "1 USD = ... EUR"
+            exchangeRateTo.text = "1 EUR = ... USD"
+            
+        case .EUR:
+            symbolFrom.text = "€"
+            symbolTo.text = "$"
+            exchangeRateFrom.text = "1 EUR = ... USD"
+            exchangeRateTo.text = "1 USD = ... EUR"
+        }
+    }
+    // MARK: - Actions
+    
+    func setPopChangeMoneyFromButton( ) {
+        
+        let optionClosure = {(action : UIAction) in
+            print(action.title)}
+        
+        changeMoneyFromButton.menu = UIMenu(children : [
+            UIAction(title: "USD", state: .on, handler: optionClosure),
+            UIAction(title: "EUR", handler: optionClosure)
+        ])
+        
+        changeMoneyFromButton.showsMenuAsPrimaryAction = true
+        changeMoneyFromButton.changesSelectionAsPrimaryAction = true
+    }
 
+    func setPopChangeMoneyToButton() {
+        
+        let optionClosure = {(action : UIAction) in
+            print(action.title)}
+        
+        changeMoneyToButton.menu = UIMenu(children : [
+            UIAction(title: "EUR", state: .on, handler: optionClosure),
+            UIAction(title: "USD", handler: optionClosure)
+        ])
+        
+        changeMoneyToButton.showsMenuAsPrimaryAction = true
+        changeMoneyToButton.changesSelectionAsPrimaryAction = true
+    }
 }

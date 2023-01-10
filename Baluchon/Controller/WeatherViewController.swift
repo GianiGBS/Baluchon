@@ -19,14 +19,6 @@ class WeatherViewController: UIViewController, CLLocationManagerDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-    // Verification de la clé
-        let apiKey = Bundle.main.object(forInfoDictionaryKey: "API_WEATHER_KEY") as? String
-        guard let key = apiKey, !key.isEmpty else {
-            print("API key does not exist")
-            return
-        }
-        print("REST API key:", key)
-        
     // Localisation
         manager.delegate = self
         manager.desiredAccuracy = kCLLocationAccuracyKilometer
