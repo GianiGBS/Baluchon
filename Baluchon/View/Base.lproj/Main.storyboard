@@ -36,7 +36,7 @@
                 <navigationController id="PyG-Yd-48A" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Change" image="dollarsign.circle" catalog="system" id="DJK-Oa-9pl"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="3mX-Qg-ElT">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="50"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
@@ -286,7 +286,7 @@
                 <navigationController id="xXF-r4-17z" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Traduction" image="repeat.circle" catalog="system" id="J8i-T2-Fwh"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="GNH-B4-F7g">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="50"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
@@ -300,7 +300,7 @@
         <!--Traduction-->
         <scene sceneID="ykD-ux-0F3">
             <objects>
-                <viewController id="zHa-fO-SM4" customClass="TraductionViewController" customModule="Baluchon" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="zHa-fO-SM4" customClass="TranslateViewController" customModule="Baluchon" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Zl9-Yx-lj9">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -410,7 +410,7 @@
                 <navigationController id="o2x-nA-5fp" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Météo" image="thermometer.sun" catalog="system" id="I3K-19-BFZ"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="Scr-8g-y8U">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="50"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>

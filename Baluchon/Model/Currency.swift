@@ -8,11 +8,11 @@
 import Foundation
 // MARK: - 
 struct Currency {
-    static let list:[(name: String, codeISO: String)] = [
-        ("EUR", "EUR"),
-        ("GBP", "GBP"),
-        ("USD", "USD")
+    static let list:[(name: String, codeISO: String, symbol: String)] = [
+        ("EUR", "EUR", "€"),
+        ("GBP", "GBP", "£"),
+        ("USD", "USD", "$")
     ]
 
-    static var currentLanguageCodeISO = "en"
+    static var currentCurrencyCodeISO = "EUR"
 }

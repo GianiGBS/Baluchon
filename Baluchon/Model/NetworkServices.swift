@@ -37,9 +37,10 @@ class ChangeService {
         self.changeSession = changeSession
     }
     
-    // MARK: - Functions
+    // MARK: - Methods
 // func get(networkConfig: , ){}
-    func getChange(callback: @escaping(Bool, ChangeRate?) -> Void) {
+    
+    func getChange(callback: @escaping(Bool, Change?) -> Void) {
         var request = URLRequest(url: URL(string: FixerAPI.url)!)
         request.httpMethod = HTTPMethod.get.rawValue
         
@@ -58,7 +59,7 @@ class ChangeService {
                     callback(false, nil)
                     return
                 }
-                guard let responseJSON = try? JSONDecoder().decode(ChangeRate.self, from: data) else {
+                guard let responseJSON = try? JSONDecoder().decode(Change.self, from: data) else {
                     callback(false, nil)
                     return
                 }
@@ -87,7 +88,7 @@ class TranslateService {
         self.translateSession = translateSession
     }
     
-    // MARK: - Functions
+    // MARK: - Methods
     
     func getTranslate(callback: @escaping(Bool, String?) -> Void) {
         
@@ -136,7 +137,7 @@ class WeatherService {
         self.weatherSession = weatherSession
     }
     
-    // MARK: - Functions
+    // MARK: - Methods
     
     func getWeather(callback: @escaping(Bool, Weather?) -> Void) {
         var request = URLRequest(url: URL(string: OpenWeatherAPI.url)!)

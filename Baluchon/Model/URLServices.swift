@@ -11,9 +11,9 @@ import Foundation
 // MARK: - Fixer API
 class FixerAPI {
     // MARK: - Properties
-    private static let endpoint = "https://api.apilayer.com/fixer/latest"
+    private static let endpoint = "https://api.apilayer.com/fixer/convert"
     private static var parameter : String {
-        return ""
+        return "?from=\(Currency.currentCurrencyCodeISO)&to=\(Currency.currentCurrencyCodeISO)&amount="
     }
     static var url : String {
         return FixerAPI.endpoint + FixerAPI.parameter
@@ -26,9 +26,9 @@ class GoogleTranslateAPI {
     // MARK: - Properties
     private static let endpoint = "https://translation.googleapis.com/language/translate/v2"
     private static var parameter : String {
-        return "&target=\(Languages.currentLanguageCodeISO)&format=text"
+        return "?source=\(Languages.currentLanguageCodeISO)&target=\(Languages.currentLanguageCodeISO)&format=text&q="
     }
-    private static let accessKey = "&key="
+    private static let accessKey = "&key=\(verifiedKey(accesKey: "API_TRANSLATE_KEY"))"
     static var url : String {
         return GoogleTranslateAPI.endpoint + GoogleTranslateAPI.parameter + GoogleTranslateAPI.accessKey
     }
@@ -38,9 +38,9 @@ class OpenWeatherAPI {
     // MARK: - Properties
     private static let endpoint = "https://api.openweathermap.org/data/2.5/weather"
     private static var parameter : String {
-        return ""
+        return "?lat=\(Int.self)&lon=\(Int.self)"
     }
-    private static let accessKey = "&appid="
+    private static let accessKey = "&appid=\(verifiedKey(accesKey: "API_WEATHER_KEY"))"
     static var url : String {
         return OpenWeatherAPI.endpoint + OpenWeatherAPI.parameter + OpenWeatherAPI.accessKey
     }

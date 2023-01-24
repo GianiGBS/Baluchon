@@ -7,14 +7,24 @@
 
 import Foundation
 // MARK: - ChangeRate
-struct ChangeRate: Decodable {
+struct Change: Decodable {
     let success: Bool
-    let timestamp: Int
-    let base, date: String
-    let rates: Rates
+    let query: Query
+    let info: Info
+    let date: String
+    let result: Double
 }
 
-// MARK: - Rates
-struct Rates: Decodable {
-    let usd: Decimal
+// MARK: - Query
+struct Query: Decodable {
+    let from: String
+    let to : String
+    let amount : Double
 }
+
+// MARK: - Info
+struct Info: Decodable {
+    let rate: Double
+}
+
+

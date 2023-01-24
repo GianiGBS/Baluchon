@@ -6,3 +6,15 @@
 //
 
 import Foundation
+ // MARK: -
+struct Translate: Decodable {
+    let data: Translations
+    
+    struct Translations: Decodable {
+        var translations: [TranslatedText]
+        
+        struct TranslatedText: Decodable {
+            var translatedText: String
+        }
+    }
+}

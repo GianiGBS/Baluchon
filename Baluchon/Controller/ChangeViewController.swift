@@ -30,37 +30,39 @@ class ChangeViewController: UIViewController {
     
     // MARK: - Selected Style Button
     
-    enum Style {
-        case USD, EUR
+    func selectCurrencyFrom(){
+        // verifier  si index optionArray == index Currency.list
+        // symbolFrom.text = index.Currency.list.symbol
     }
-    
-    func setStyleButton(_ style: Style) {
-        switch style {
-        case .USD:
-            symbolFrom.text = "$"
-            symbolTo.text = "€"
-            exchangeRateFrom.text = "1 USD = ... EUR"
-            exchangeRateTo.text = "1 EUR = ... USD"
-            
-        case .EUR:
-            symbolFrom.text = "€"
-            symbolTo.text = "$"
-            exchangeRateFrom.text = "1 EUR = ... USD"
-            exchangeRateTo.text = "1 USD = ... EUR"
-        }
+    func selectCurrencyTo(){
+        
     }
+
     // MARK: - Actions
     
-    func setPopChangeMoneyFromButton( ) {
+    func setPopChangeMoneyFromButton() {
         
+        // creation de la closure
         let optionClosure = {(action : UIAction) in
-            print(action.title)}
+            print(action.title)
+            self.selectCurrencyFrom()
+        }
         
-        changeMoneyFromButton.menu = UIMenu(children : [
-            UIAction(title: "USD", state: .on, handler: optionClosure),
-            UIAction(title: "EUR", handler: optionClosure)
-        ])
+        // creation d'un tableau d'actions
+        var optionsArray = [UIAction]()
         
+        // boucle pour remplir le tableau d'actions
+        for currency in Currency.list {
+            let action = UIAction(title: currency.name, state: .off, handler: optionClosure)
+            
+            optionsArray.append(action)
+        }
+        
+        // set the state of first country in the array as ON
+        optionsArray[0].state = .on
+        
+        // add everything to your button
+        changeMoneyFromButton.menu = UIMenu(title: "", options: .displayInline, children: optionsArray)
         changeMoneyFromButton.showsMenuAsPrimaryAction = true
         changeMoneyFromButton.changesSelectionAsPrimaryAction = true
     }
@@ -68,14 +70,20 @@ class ChangeViewController: UIViewController {
     func setPopChangeMoneyToButton() {
         
         let optionClosure = {(action : UIAction) in
-            print(action.title)}
+            print(action.title)
+            
+        }
         
         changeMoneyToButton.menu = UIMenu(children : [
             UIAction(title: "EUR", state: .on, handler: optionClosure),
-            UIAction(title: "USD", handler: optionClosure)
+            UIAction(title: "USD", handler: optionClosure),
+            UIAction(title: "GBP", handler: optionClosure)
         ])
         
         changeMoneyToButton.showsMenuAsPrimaryAction = true
         changeMoneyToButton.changesSelectionAsPrimaryAction = true
     }
+    
+    // MARK: - Methods
+
 }
