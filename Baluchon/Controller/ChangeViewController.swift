@@ -9,81 +9,140 @@ import UIKit
 
 class ChangeViewController: UIViewController {
     
-    
     @IBOutlet weak var changeMoneyFromButton: UIButton!
+    
+    @IBOutlet weak var textFieldFrom: UITextField!
     @IBOutlet weak var symbolFrom: UILabel!
     @IBOutlet weak var amountFrom: UITextField!
     @IBOutlet weak var exchangeRateFrom: UILabel!
     
     
     @IBOutlet weak var changeMoneyToButton: UIButton!
+    
+    @IBOutlet weak var textFieldTo: UITextField!
     @IBOutlet weak var symbolTo: UILabel!
     @IBOutlet weak var amountTo: UITextField!
     @IBOutlet weak var exchangeRateTo: UILabel!
     
+    var changeMoneyFromPickerView = UIPickerView()
+    var changeMoneyToPickerView = UIPickerView()
+    
+    
     // MARK: - Navigation
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        setPopChangeMoneyFromButton()
-        setPopChangeMoneyToButton()
-    }
-    
-    // MARK: - Selected Style Button
-    
-    func selectCurrencyFrom(){
-        // verifier  si index optionArray == index Currency.list
-        // symbolFrom.text = index.Currency.list.symbol
-    }
-    func selectCurrencyTo(){
         
+        setPickerView()
+        tagPickerView()
+    }
+    
+    // MARK: - Functions
+    
+    private func callChangeNetworkServices(with amountToChange: String){
+        ChangeService.shared.getChange(with: amountToChange) { success, change in
+            guard let change = change, success == true else {
+                self.presentAlert(title: "Echec de l'appel", message: "Fixer.API n'a pas répondu.\nVeuillez réessayer.")
+                return
+            }
+            self.update(change: change)
+        }
+    }
+    
+    private func update(change: Change) {
+        amountTo.text = "\(change.result)"
+        exchangeRateFrom.text = "1\(change.query.from) = \(change.info.rate)\(change.query.to)"
+    }
+    
+    func presentAlert(title: String, message: String) {
+        let alertVC = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        alertVC.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
+        present(alertVC, animated: true, completion: nil)
+    }
+    
+    func setPickerView(){
+        textFieldFrom.inputView = changeMoneyFromPickerView
+        textFieldTo.inputView = changeMoneyToPickerView
+        
+        changeMoneyFromPickerView.delegate = self
+        changeMoneyFromPickerView.dataSource = self
+        changeMoneyToPickerView.delegate = self
+        changeMoneyToPickerView.dataSource = self
+    }
+    
+    func tagPickerView(){
+        changeMoneyFromPickerView.tag = 1
+        changeMoneyToPickerView.tag = 2
+    }
+}
+
+// MARK: - PickerView
+
+extension ChangeViewController : UIPickerViewDataSource,UIPickerViewDelegate, UITextFieldDelegate {
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        return 1
     }
 
-    // MARK: - Actions
-    
-    func setPopChangeMoneyFromButton() {
-        
-        // creation de la closure
-        let optionClosure = {(action : UIAction) in
-            print(action.title)
-            self.selectCurrencyFrom()
-        }
-        
-        // creation d'un tableau d'actions
-        var optionsArray = [UIAction]()
-        
-        // boucle pour remplir le tableau d'actions
-        for currency in Currency.list {
-            let action = UIAction(title: currency.name, state: .off, handler: optionClosure)
-            
-            optionsArray.append(action)
-        }
-        
-        // set the state of first country in the array as ON
-        optionsArray[0].state = .on
-        
-        // add everything to your button
-        changeMoneyFromButton.menu = UIMenu(title: "", options: .displayInline, children: optionsArray)
-        changeMoneyFromButton.showsMenuAsPrimaryAction = true
-        changeMoneyFromButton.changesSelectionAsPrimaryAction = true
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        Currency.list.count
     }
 
-    func setPopChangeMoneyToButton() {
-        
-        let optionClosure = {(action : UIAction) in
-            print(action.title)
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        return Currency.list[row].name
+    }
+
+    func pickerView(_ pickerView : UIPickerView, didSelectRow row : Int, inComponent component : Int) {
+        switch pickerView.tag {
+        case 1:
+            let currentCurrencySelectedFrom = Currency.list[row]
+            Currency.currentCurrencyFromCodeISO = currentCurrencySelectedFrom.codeISO
+            textFieldFrom.text = currentCurrencySelectedFrom.name
+            textFieldFrom.resignFirstResponder()
+            symbolFrom.text = currentCurrencySelectedFrom.symbol
             
+        case 2:
+            let currentCurrencySelectedTo = Currency.list[row]
+            Currency.currentCurrencyToCodeISO = currentCurrencySelectedTo.codeISO
+            textFieldTo.text = currentCurrencySelectedTo.name
+            textFieldTo.resignFirstResponder()
+            symbolTo.text = currentCurrencySelectedTo.symbol
+            
+        default:
+            return
         }
+//        guard let amountTochange = amountFrom.text else{
+//            self.presentAlert(title: "Petit problème",
+//                             message: "Google traduction n'a pas répondu.\nVeuillez réessayer.")
+//            return
+//        }
+//        callChangeNetworkServices(with: amountTochange)
+//        amountFrom.resignFirstResponder()
         
-        changeMoneyToButton.menu = UIMenu(children : [
-            UIAction(title: "EUR", state: .on, handler: optionClosure),
-            UIAction(title: "USD", handler: optionClosure),
-            UIAction(title: "GBP", handler: optionClosure)
-        ])
-        
-        changeMoneyToButton.showsMenuAsPrimaryAction = true
-        changeMoneyToButton.changesSelectionAsPrimaryAction = true
     }
     
-    // MARK: - Methods
+    func amountTextFieldShouldReturn(textField: UITextField)-> Bool {
+        guard let amountTochange = textField.text else{
+            self.presentAlert(title: "Petit problème",
+                             message: "Fixer n'a pas répondu.\n Veuillez réessayer.")
+            return true
+        }
+        textField.resignFirstResponder()
+        callChangeNetworkServices(with: amountTochange)
+        return true
+    }
 
 }
+
+
+//    func dismissPickerViewTo() {
+//       let toolBar = UIToolbar()
+//       toolBar.sizeToFit()
+//       let button = UIBarButtonItem(title: "Done", style: .plain, target: self, action: #selector(self.action))
+//       toolBar.setItems([button], animated: true)
+//       toolBar.isUserInteractionEnabled = true
+//       textFieldTo.inputAccessoryView = toolBar
+//    }
+//    @objc func action() {
+//          view.endEditing(true)
+//    }
+//}

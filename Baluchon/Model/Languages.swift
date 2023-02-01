@@ -6,7 +6,7 @@
 //
 
 import Foundation
-// MARK: - 
+// MARK: - Languages list
 struct Languages {
     static let list:[(name: String, codeISO: String)] = [
         ("Anglais", "en"),
@@ -16,5 +16,6 @@ struct Languages {
         ("Italien", "it")
     ]
 
-    static var currentLanguageCodeISO = "en"
+    static var currentLanguageFromCodeISO = "fr"
+    static var currentLanguageToCodeISO = "en"
 }

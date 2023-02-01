@@ -6,13 +6,14 @@
 //
 
 import Foundation
-// MARK: - 
+// MARK: - Currency list
 struct Currency {
     static let list:[(name: String, codeISO: String, symbol: String)] = [
-        ("EUR", "EUR", "€"),
-        ("GBP", "GBP", "£"),
-        ("USD", "USD", "$")
+        ("Euro", "EUR", "€"),
+        ("Livre", "GBP", "£"),
+        ("Dollar US", "USD", "$")
     ]
 
-    static var currentCurrencyCodeISO = "EUR"
+    static var currentCurrencyFromCodeISO = "EUR"
+    static var currentCurrencyToCodeISO = "USD"
 }

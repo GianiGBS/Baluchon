@@ -40,8 +40,11 @@ class ChangeService {
     // MARK: - Methods
 // func get(networkConfig: , ){}
     
-    func getChange(callback: @escaping(Bool, Change?) -> Void) {
-        var request = URLRequest(url: URL(string: FixerAPI.url)!)
+    func getChange(with amount: String, callback: @escaping(Bool,Change?) -> Void) {
+        
+        let allURL = FixerAPI.url + amount
+        
+        var request = URLRequest(url: URL(string: allURL)!)
         request.httpMethod = HTTPMethod.get.rawValue
         
         let apiKey = verifiedKey(accesKey: "API_CHANGE_KEY")
@@ -60,11 +63,13 @@ class ChangeService {
                     return
                 }
                 guard let responseJSON = try? JSONDecoder().decode(Change.self, from: data) else {
+                    
                     callback(false, nil)
                     return
                 }
-                
-                callback(true, responseJSON)
+                print(responseJSON)
+                let change = responseJSON
+                callback(true, change)
             }
         }
         task?.resume()
@@ -90,10 +95,11 @@ class TranslateService {
     
     // MARK: - Methods
     
-    func getTranslate(callback: @escaping(Bool, String?) -> Void) {
+    func getTranslate(with text: String,callback: @escaping(Bool, String?) -> Void) {
         
+        let allURL = GoogleTranslateAPI.url + text
         
-        var request = URLRequest(url: URL(string: GoogleTranslateAPI.url)!)
+        var request = URLRequest(url: URL(string: allURL)!)
         request.httpMethod = HTTPMethod.post.rawValue
         
         

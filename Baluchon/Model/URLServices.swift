@@ -13,7 +13,7 @@ class FixerAPI {
     // MARK: - Properties
     private static let endpoint = "https://api.apilayer.com/fixer/convert"
     private static var parameter : String {
-        return "?from=\(Currency.currentCurrencyCodeISO)&to=\(Currency.currentCurrencyCodeISO)&amount="
+        return "?from=\(Currency.currentCurrencyFromCodeISO)&to=\(Currency.currentCurrencyToCodeISO)&amount="
     }
     static var url : String {
         return FixerAPI.endpoint + FixerAPI.parameter
@@ -26,7 +26,7 @@ class GoogleTranslateAPI {
     // MARK: - Properties
     private static let endpoint = "https://translation.googleapis.com/language/translate/v2"
     private static var parameter : String {
-        return "?source=\(Languages.currentLanguageCodeISO)&target=\(Languages.currentLanguageCodeISO)&format=text&q="
+        return "?source=\(Languages.currentLanguageFromCodeISO)&target=\(Languages.currentLanguageToCodeISO)&format=text&q="
     }
     private static let accessKey = "&key=\(verifiedKey(accesKey: "API_TRANSLATE_KEY"))"
     static var url : String {

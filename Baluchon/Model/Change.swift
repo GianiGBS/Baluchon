@@ -12,19 +12,20 @@ struct Change: Decodable {
     let query: Query
     let info: Info
     let date: String
-    let result: Double
+    let result: Decimal
 }
 
 // MARK: - Query
 struct Query: Decodable {
     let from: String
     let to : String
-    let amount : Double
+    let amount : Decimal
 }
 
 // MARK: - Info
 struct Info: Decodable {
     let rate: Double
 }
+
 
 
