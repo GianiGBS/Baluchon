@@ -16,6 +16,8 @@ class ChangeViewController: UIViewController {
     @IBOutlet weak var amountFrom: UITextField!
     @IBOutlet weak var exchangeRateFrom: UILabel!
     
+    @IBOutlet weak var convertButton: UIButton!
+    
     
     @IBOutlet weak var changeMoneyToButton: UIButton!
     
@@ -36,7 +38,11 @@ class ChangeViewController: UIViewController {
         setPickerView()
         tagPickerView()
     }
+    // MARK: - Actions
     
+    @IBAction func convert(_ sender: Any) {
+        amountTextFieldShouldReturn(textField: amountFrom)
+    }
     // MARK: - Functions
     
     private func callChangeNetworkServices(with amountToChange: String){
@@ -51,7 +57,7 @@ class ChangeViewController: UIViewController {
     
     private func update(change: Change) {
         amountTo.text = "\(change.result)"
-        exchangeRateFrom.text = "1\(change.query.from) = \(change.info.rate)\(change.query.to)"
+        exchangeRateFrom.text = "1 \(change.query.from) = \(change.info.rate) \(change.query.to)"
     }
     
     func presentAlert(title: String, message: String) {
@@ -110,25 +116,17 @@ extension ChangeViewController : UIPickerViewDataSource,UIPickerViewDelegate, UI
         default:
             return
         }
-//        guard let amountTochange = amountFrom.text else{
-//            self.presentAlert(title: "Petit problème",
-//                             message: "Google traduction n'a pas répondu.\nVeuillez réessayer.")
-//            return
-//        }
-//        callChangeNetworkServices(with: amountTochange)
-//        amountFrom.resignFirstResponder()
-        
     }
     
-    func amountTextFieldShouldReturn(textField: UITextField)-> Bool {
+    func amountTextFieldShouldReturn(textField: UITextField) {
         guard let amountTochange = textField.text else{
-            self.presentAlert(title: "Petit problème",
-                             message: "Fixer n'a pas répondu.\n Veuillez réessayer.")
-            return true
+            self.presentAlert(title: "Entrée vide",
+                             message: "Veuillez réessayer une nouvelle valeur d'entrée.")
+            return
         }
         textField.resignFirstResponder()
         callChangeNetworkServices(with: amountTochange)
-        return true
+        return
     }
 
 }

@@ -6,8 +6,8 @@
 	<string></string>
 	<key>API_WEATHER_KEY</key>
 	<string>$(API_WEATHER_KEY)</string>
-	<key>API_TANSLATE_KEY</key>
-	<string>$(API_TANSLATE_KEY)</string>
+	<key>API_TRANSLATE_KEY</key>
+	<string>$(API_TRANSLATE_KEY)</string>
 	<key>API_CHANGE_KEY</key>
 	<string>$(API_CHANGE_KEY)</string>
 	<key>UIApplicationSceneManifest</key>

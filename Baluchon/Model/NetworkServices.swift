@@ -13,7 +13,7 @@ enum HTTPMethod: String {
 }
 
 func verifiedKey(accesKey: String) -> String{
-    let apiKey = Bundle.main.object(forInfoDictionaryKey: "accesKey") as? String
+    let apiKey = Bundle.main.object(forInfoDictionaryKey: accesKey) as? String
     
     guard let key = apiKey, !key.isEmpty else {
         return "API key does not exist"
@@ -76,6 +76,7 @@ class ChangeService {
     }
 }
 
+
 // MARK: - Google translate API
 
 class TranslateService {
@@ -96,9 +97,9 @@ class TranslateService {
     // MARK: - Methods
     
     func getTranslate(with text: String,callback: @escaping(Bool, String?) -> Void) {
-        
+        // guard let 
         let allURL = GoogleTranslateAPI.url + text
-        
+       
         var request = URLRequest(url: URL(string: allURL)!)
         request.httpMethod = HTTPMethod.post.rawValue
         

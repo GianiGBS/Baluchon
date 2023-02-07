@@ -10,7 +10,6 @@
 		C22EB64E2926B64000E3086C /* WeatherPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C22EB64D2926B64000E3086C /* WeatherPageViewController.swift */; };
 		C22EB650292C44DD00E3086C /* Languages.swift in Sources */ = {isa = PBXBuildFile; fileRef = C22EB64F292C44DD00E3086C /* Languages.swift */; };
 		C22EB6522930BD0800E3086C /* URLServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = C22EB6512930BD0800E3086C /* URLServices.swift */; };
-		C22EB654293E1AEA00E3086C /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C22EB653293E1AEA00E3086C /* NetworkManager.swift */; };
 		C25356892914216D008E9E77 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C25356882914216D008E9E77 /* CoreLocation.framework */; };
 		C253568F29184DFA008E9E77 /* TranslateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C253568E29184DFA008E9E77 /* TranslateViewController.swift */; };
 		C253569129184E19008E9E77 /* WeatherViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C253569029184E19008E9E77 /* WeatherViewController.swift */; };
@@ -31,7 +30,6 @@
 		C22EB64D2926B64000E3086C /* WeatherPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherPageViewController.swift; sourceTree = "<group>"; };
 		C22EB64F292C44DD00E3086C /* Languages.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Languages.swift; sourceTree = "<group>"; };
 		C22EB6512930BD0800E3086C /* URLServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLServices.swift; sourceTree = "<group>"; };
-		C22EB653293E1AEA00E3086C /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		C25356852912B3BC008E9E77 /* Secrets.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Secrets.xcconfig; sourceTree = "<group>"; };
 		C25356882914216D008E9E77 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		C253568E29184DFA008E9E77 /* TranslateViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TranslateViewController.swift; sourceTree = "<group>"; };
@@ -111,7 +109,6 @@
 				C22EB64F292C44DD00E3086C /* Languages.swift */,
 				C2D1642A290EC756004EB5B6 /* Weather.swift */,
 				C253569329184F4C008E9E77 /* NetworkServices.swift */,
-				C22EB653293E1AEA00E3086C /* NetworkManager.swift */,
 				C22EB6512930BD0800E3086C /* URLServices.swift */,
 			);
 			path = Model;
@@ -212,7 +209,6 @@
 				C22EB64E2926B64000E3086C /* WeatherPageViewController.swift in Sources */,
 				C2D1642B290EC756004EB5B6 /* Weather.swift in Sources */,
 				C253569129184E19008E9E77 /* WeatherViewController.swift in Sources */,
-				C22EB654293E1AEA00E3086C /* NetworkManager.swift in Sources */,
 				C2D1641F2908A2BB004EB5B6 /* ChangeViewController.swift in Sources */,
 				C22EB650292C44DD00E3086C /* Languages.swift in Sources */,
 				C253569429184F4C008E9E77 /* NetworkServices.swift in Sources */,

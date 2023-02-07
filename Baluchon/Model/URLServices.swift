@@ -26,9 +26,9 @@ class GoogleTranslateAPI {
     // MARK: - Properties
     private static let endpoint = "https://translation.googleapis.com/language/translate/v2"
     private static var parameter : String {
-        return "?source=\(Languages.currentLanguageFromCodeISO)&target=\(Languages.currentLanguageToCodeISO)&format=text&q="
+        return "?source=\(Languages.currentLanguageFromCodeISO)&target=\(Languages.currentLanguageToCodeISO)&format=text"
     }
-    private static let accessKey = "&key=\(verifiedKey(accesKey: "API_TRANSLATE_KEY"))"
+    private static let accessKey = "&key=\(verifiedKey(accesKey: "API_TRANSLATE_KEY"))&q="
     static var url : String {
         return GoogleTranslateAPI.endpoint + GoogleTranslateAPI.parameter + GoogleTranslateAPI.accessKey
     }
