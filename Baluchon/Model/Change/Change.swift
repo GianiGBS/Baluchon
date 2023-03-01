@@ -18,14 +18,11 @@ struct Change: Decodable {
 // MARK: - Query
 struct Query: Decodable {
     let from: String
-    let to : String
-    let amount : Decimal
+    let to: String
+    let amount: Decimal
 }
 
 // MARK: - Info
 struct Info: Decodable {
     let rate: Double
 }
-
-
-

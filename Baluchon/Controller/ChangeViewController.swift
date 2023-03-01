@@ -8,83 +8,77 @@
 import UIKit
 
 class ChangeViewController: UIViewController {
-    
+
+    // MARK: - Outlets
     @IBOutlet weak var changeMoneyFromButton: UIButton!
-    
     @IBOutlet weak var textFieldFrom: UITextField!
     @IBOutlet weak var symbolFrom: UILabel!
     @IBOutlet weak var amountFrom: UITextField!
     @IBOutlet weak var exchangeRateFrom: UILabel!
-    
+
     @IBOutlet weak var convertButton: UIButton!
-    
-    
+
     @IBOutlet weak var changeMoneyToButton: UIButton!
-    
     @IBOutlet weak var textFieldTo: UITextField!
     @IBOutlet weak var symbolTo: UILabel!
     @IBOutlet weak var amountTo: UITextField!
     @IBOutlet weak var exchangeRateTo: UILabel!
-    
+
+    // MARK: - Properties
     var changeMoneyFromPickerView = UIPickerView()
     var changeMoneyToPickerView = UIPickerView()
-    
-    
+    let changeManager = ChangeManager()
+
     // MARK: - Navigation
-    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        changeManager.delegate = self
         setPickerView()
         tagPickerView()
+        changeMoneyFromPickerView.selectRow(0, inComponent: 0, animated: true)
+        changeMoneyToPickerView.selectRow(2, inComponent: 0, animated: true)
     }
+
     // MARK: - Actions
-    
     @IBAction func convert(_ sender: Any) {
         amountTextFieldShouldReturn(textField: amountFrom)
     }
-    // MARK: - Functions
-    
-    private func callChangeNetworkServices(with amountToChange: String){
-        ChangeService.shared.getChange(with: amountToChange) { success, change in
-            guard let change = change, success == true else {
-                self.presentAlert(title: "Echec de l'appel", message: "Fixer.API n'a pas répondu.\nVeuillez réessayer.")
-                return
-            }
-            self.update(change: change)
-        }
-    }
-    
-    private func update(change: Change) {
-        amountTo.text = "\(change.result)"
-        exchangeRateFrom.text = "1 \(change.query.from) = \(change.info.rate) \(change.query.to)"
-    }
-    
-    func presentAlert(title: String, message: String) {
-        let alertVC = UIAlertController(title: title, message: message, preferredStyle: .alert)
-        alertVC.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
-        present(alertVC, animated: true, completion: nil)
-    }
-    
-    func setPickerView(){
+
+    // MARK: - Methods
+    func setPickerView() {
         textFieldFrom.inputView = changeMoneyFromPickerView
         textFieldTo.inputView = changeMoneyToPickerView
-        
+
         changeMoneyFromPickerView.delegate = self
         changeMoneyFromPickerView.dataSource = self
         changeMoneyToPickerView.delegate = self
         changeMoneyToPickerView.dataSource = self
     }
-    
-    func tagPickerView(){
+
+    func tagPickerView() {
         changeMoneyFromPickerView.tag = 1
         changeMoneyToPickerView.tag = 2
     }
 }
 
-// MARK: - PickerView
+    // MARK: - Delegate Pattern
+extension ChangeViewController: ViewDelegate {
+    func updateView() {
+        guard let data = changeManager.data, !data.date.isEmpty else {
+            return self.presentAlert(title: "Erreur", message: "Aucune données.")
+    }
+        amountTo.text = "\(changeManager.data!.result)"
+        exchangeRateFrom.text = "1 \(changeManager.data!.query.from) = \(changeManager.data!.info.rate) \(changeManager.data!.query.to)"
+    }
+    func presentAlert(title: String, message: String) {
+        let alertVC = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        alertVC.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
+        present(alertVC, animated: true, completion: nil)
+    }
+}
 
-extension ChangeViewController : UIPickerViewDataSource,UIPickerViewDelegate, UITextFieldDelegate {
+    // MARK: - PickerView
+extension ChangeViewController: UIPickerViewDataSource, UIPickerViewDelegate, UITextFieldDelegate {
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 1
     }
@@ -97,7 +91,7 @@ extension ChangeViewController : UIPickerViewDataSource,UIPickerViewDelegate, UI
         return Currency.list[row].name
     }
 
-    func pickerView(_ pickerView : UIPickerView, didSelectRow row : Int, inComponent component : Int) {
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         switch pickerView.tag {
         case 1:
             let currentCurrencySelectedFrom = Currency.list[row]
@@ -105,42 +99,25 @@ extension ChangeViewController : UIPickerViewDataSource,UIPickerViewDelegate, UI
             textFieldFrom.text = currentCurrencySelectedFrom.name
             textFieldFrom.resignFirstResponder()
             symbolFrom.text = currentCurrencySelectedFrom.symbol
-            
         case 2:
             let currentCurrencySelectedTo = Currency.list[row]
             Currency.currentCurrencyToCodeISO = currentCurrencySelectedTo.codeISO
             textFieldTo.text = currentCurrencySelectedTo.name
             textFieldTo.resignFirstResponder()
             symbolTo.text = currentCurrencySelectedTo.symbol
-            
         default:
             return
         }
     }
-    
+
     func amountTextFieldShouldReturn(textField: UITextField) {
-        guard let amountTochange = textField.text else{
-            self.presentAlert(title: "Entrée vide",
-                             message: "Veuillez réessayer une nouvelle valeur d'entrée.")
-            return
+        guard let amountTochange = textField.text, !amountTochange.isEmpty else {
+            return self.presentAlert(title: "Entrée vide",
+                                     message: "Veuillez réessayer une nouvelle valeur d'entrée.")
         }
         textField.resignFirstResponder()
-        callChangeNetworkServices(with: amountTochange)
+        changeManager.getData(amountToChange: amountTochange)
+        // callChangeNetworkServices(with: amountTochange)
         return
     }
-
 }
-
-
-//    func dismissPickerViewTo() {
-//       let toolBar = UIToolbar()
-//       toolBar.sizeToFit()
-//       let button = UIBarButtonItem(title: "Done", style: .plain, target: self, action: #selector(self.action))
-//       toolBar.setItems([button], animated: true)
-//       toolBar.isUserInteractionEnabled = true
-//       textFieldTo.inputAccessoryView = toolBar
-//    }
-//    @objc func action() {
-//          view.endEditing(true)
-//    }
-//}
