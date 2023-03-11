@@ -6,24 +6,22 @@
 //
 
 import Foundation
+
 // MARK: - Fixer API
-
 class ChangeService {
-    // MARK: - Properties
 
+    // MARK: - Properties
     static var shared = ChangeService()
     private init() {}
     private var task: URLSessionDataTask?
     private var changeSession = URLSession(configuration: .default)
 
     // MARK: - Initialization
-
     init(changeSession: URLSession) {
         self.changeSession = changeSession
     }
 
     // MARK: - Methods
-
     func getChange(with amount: String, callback: @escaping(Bool, Change?) -> Void) {
 
         let allURL = FixerAPI.url + amount

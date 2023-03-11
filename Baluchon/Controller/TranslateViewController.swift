@@ -14,6 +14,9 @@ class TranslateViewController: UIViewController {
     @IBOutlet weak var textFieldFrom: UITextField!
     @IBOutlet weak var textViewFrom: UITextView!
 
+    @IBOutlet weak var translateButton: UIButton!
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
+
     @IBOutlet weak var translateToButton: UIButton!
     @IBOutlet weak var textFieldTo: UITextField!
     @IBOutlet weak var textViewTo: UITextView!
@@ -26,12 +29,23 @@ class TranslateViewController: UIViewController {
     // MARK: - Navigation
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        translateManager.delegate = self
         setPickerView()
         tagPickerView()
+        translateFromPickerView.selectRow(3, inComponent: 0, animated: true)
+        translateToPickerView.selectRow(1, inComponent: 0, animated: true)
+        textFieldFrom.text = Languages.list[3].name
+        textFieldTo.text = Languages.list[0].name
     }
 
+    // MARK: - Actions
+
+    @IBAction func translate(_ sender: Any) {
+        toggleActivityIndicator(shown: true)
+        textToTranslateShouldReturn(textView: textViewFrom)
+    }
     // MARK: - Methods
+
     func setPlaceholderToTextView() {
 
     }
@@ -55,15 +69,20 @@ class TranslateViewController: UIViewController {
 // MARK: - Delegate Pattern
 extension TranslateViewController: ViewDelegate {
     func updateView() {
-        guard let data = translateManager.data, !data.isEmpty else {
+        toggleActivityIndicator(shown: false)
+        guard let data = translateManager.data, !data.data.translations[0].translatedText.isEmpty else {
             return self.presentAlert(title: "Erreur", message: "Aucune données.")
     }
-        textViewTo.text = translateManager.data!
+        textViewTo.text = "\(data.data.translations[0].translatedText)"
     }
     func presentAlert(title: String, message: String) {
         let alertVC = UIAlertController(title: title, message: message, preferredStyle: .alert)
         alertVC.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
         present(alertVC, animated: true, completion: nil)
+    }
+    internal func toggleActivityIndicator(shown: Bool) {
+        translateButton.isUserInteractionEnabled = !shown
+        activityIndicator.isHidden = !shown
     }
 
 }
@@ -96,12 +115,15 @@ extension TranslateViewController: UIPickerViewDataSource, UIPickerViewDelegate,
         default:
             return
         }
-        guard let textToTranslate = textViewFrom.text else {
-            self.presentAlert(title: "Petit problème",
-                              message: "Google traduction n'a pas répondu.\nVeuillez réessayer.")
-            return
+    }
+
+    func textToTranslateShouldReturn(textView: UITextView) {
+            guard let textToTranslate = textView.text, !textToTranslate.isEmpty else {
+            return self.presentAlert(title: "Entrée vide",
+                              message: "Il faut entrer le texte.\nVeuillez réessayer.")
         }
-        textViewTo.resignFirstResponder()
+        textView.resignFirstResponder()
         translateManager.getData(textToTranslate: textToTranslate)
+        return
     }
 }

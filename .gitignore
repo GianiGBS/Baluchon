@@ -121,7 +121,7 @@ iOSInjectionProject/
 ### Xcode ###
 
 ## Xcode 8 and earlier
-.xcconfig
+
 ### Xcode Patch ###
 *.xcodeproj/*
 !*.xcodeproj/project.pbxproj
@@ -130,6 +130,7 @@ iOSInjectionProject/
 !*.xcworkspace/contents.xcworkspacedata
 /*.gcno
 **/xcshareddata/WorkspaceSettings.xcsettings
+Secrets.xcconfig
 
 # End of https://www.toptal.com/developers/gitignore/api/macos,xcode,swift
 :wq

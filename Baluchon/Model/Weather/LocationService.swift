@@ -11,9 +11,12 @@ import CoreLocation
 class LocationService: NSObject, CLLocationManagerDelegate {
 
     // MARK: - Properties
+    static var shared = LocationService()
     let location = CLLocationManager()
     var currentlocation: CLLocation?
     let weatherManager = WeatherManager()
+    var latitude = ""
+    var longitude = ""
 
     // MARK: - Initialization
 
@@ -28,13 +31,10 @@ class LocationService: NSObject, CLLocationManagerDelegate {
         if let location = locations.last {
             self.currentlocation = location
             print(location)
-            let latitude: Double = self.currentlocation!.coordinate.latitude
-            let longitude: Double = self.currentlocation!.coordinate.longitude
-
-            print(latitude)
-            print(longitude)
-            
-            weatherManager.getData()
+            latitude = "\(self.currentlocation!.coordinate.latitude)"
+            longitude = "\(self.currentlocation!.coordinate.longitude)"
+            CurrentLocation.latitude = latitude
+            CurrentLocation.longitude = longitude
         }
     }
 }

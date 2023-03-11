@@ -3,9 +3,11 @@
 //  Baluchon
 //
 //  Created by Giovanni Gabriel on 30/10/2022.
-//
+// 
+// swiftlint:disable identifier_name
 
 import Foundation
+
 // MARK: - ChangeRate
 struct Change: Decodable {
     let success: Bool

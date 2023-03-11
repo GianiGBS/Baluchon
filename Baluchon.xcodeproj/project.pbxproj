@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		C222033D2996C418009EB007 /* Currentlocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = C222033C2996C418009EB007 /* Currentlocation.swift */; };
+		C222033D2996C418009EB007 /* CurrentLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = C222033C2996C418009EB007 /* CurrentLocation.swift */; };
 		C22EB64E2926B64000E3086C /* WeatherPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C22EB64D2926B64000E3086C /* WeatherPageViewController.swift */; };
 		C22EB650292C44DD00E3086C /* Languages.swift in Sources */ = {isa = PBXBuildFile; fileRef = C22EB64F292C44DD00E3086C /* Languages.swift */; };
 		C25356892914216D008E9E77 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C25356882914216D008E9E77 /* CoreLocation.framework */; };
@@ -52,7 +52,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		C222033C2996C418009EB007 /* Currentlocation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Currentlocation.swift; sourceTree = "<group>"; };
+		C222033C2996C418009EB007 /* CurrentLocation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentLocation.swift; sourceTree = "<group>"; };
 		C22EB64D2926B64000E3086C /* WeatherPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherPageViewController.swift; sourceTree = "<group>"; };
 		C22EB64F292C44DD00E3086C /* Languages.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Languages.swift; sourceTree = "<group>"; };
 		C25356852912B3BC008E9E77 /* Secrets.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Secrets.xcconfig; sourceTree = "<group>"; };
@@ -145,7 +145,7 @@
 			isa = PBXGroup;
 			children = (
 				C2D1642A290EC756004EB5B6 /* Weather.swift */,
-				C222033C2996C418009EB007 /* Currentlocation.swift */,
+				C222033C2996C418009EB007 /* CurrentLocation.swift */,
 				C27DE2D129AFA215008C9F8D /* LocationService.swift */,
 				C27DE2B029AEA1EB008C9F8D /* WeatherService.swift */,
 				C27DE2B329AEA267008C9F8D /* WeatherManager.swift */,
@@ -200,10 +200,10 @@
 		C2D163D928ECDA64004EB5B6 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				C27DE2BC29AEA51E008C9F8D /* NetWorkManagement.swift */,
 				C27DE2AB29AEA0E6008C9F8D /* Change */,
 				C27DE2B229AEA205008C9F8D /* Translate */,
 				C27DE2B529AEA28E008C9F8D /* Weather */,
-				C27DE2BC29AEA51E008C9F8D /* NetWorkManagement.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -340,6 +340,7 @@
 /* Begin PBXShellScriptBuildPhase section */
 		C27DE2A629AE93B1008C9F8D /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
+			alwaysOutOfDate = 1;
 			buildActionMask = 2147483647;
 			files = (
 			);
@@ -395,7 +396,7 @@
 				C27DE2B729AEA459008C9F8D /* ChangeURL.swift in Sources */,
 				C27DE2D229AFA215008C9F8D /* LocationService.swift in Sources */,
 				C277F866296B2FF300C08E51 /* Currency.swift in Sources */,
-				C222033D2996C418009EB007 /* Currentlocation.swift in Sources */,
+				C222033D2996C418009EB007 /* CurrentLocation.swift in Sources */,
 				C27DE2A829AE9FFF008C9F8D /* ChangeService.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

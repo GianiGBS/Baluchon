@@ -14,6 +14,7 @@ enum HTTPMethod: String {
 
 protocol ViewDelegate: AnyObject {
     func updateView()
+    func toggleActivityIndicator(shown: Bool)
     func presentAlert(title: String, message: String)
 }
 

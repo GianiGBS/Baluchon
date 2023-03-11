@@ -4,14 +4,13 @@
 //
 //  Created by Giovanni Gabriel on 28/02/2023.
 //
-
+// swiftlint:disable line_length
 import Foundation
 
 // MARK: - Google translate API
-
 class GoogleTranslateAPI {
-    // MARK: - Properties
 
+    // MARK: - Properties
     private static let endpoint = "https://translation.googleapis.com/language/translate/v2"
     private static var parameter: String {
         return "?source=\(Languages.currentLanguageFromCodeISO)&target=\(Languages.currentLanguageToCodeISO)&format=text"

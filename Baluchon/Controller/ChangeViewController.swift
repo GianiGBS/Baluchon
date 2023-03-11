@@ -4,7 +4,7 @@
 //
 //  Created by Giovanni Gabriel on 25/10/2022.
 //
-
+// 
 import UIKit
 
 class ChangeViewController: UIViewController {
@@ -17,6 +17,7 @@ class ChangeViewController: UIViewController {
     @IBOutlet weak var exchangeRateFrom: UILabel!
 
     @IBOutlet weak var convertButton: UIButton!
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
 
     @IBOutlet weak var changeMoneyToButton: UIButton!
     @IBOutlet weak var textFieldTo: UITextField!
@@ -35,12 +36,15 @@ class ChangeViewController: UIViewController {
         changeManager.delegate = self
         setPickerView()
         tagPickerView()
-        changeMoneyFromPickerView.selectRow(0, inComponent: 0, animated: true)
-        changeMoneyToPickerView.selectRow(2, inComponent: 0, animated: true)
+//        changeMoneyFromPickerView.selectRow(0, inComponent: 0, animated: true)
+//        changeMoneyToPickerView.selectRow(2, inComponent: 0, animated: true)
+        textFieldFrom.text = Currency.list[0].name
+        textFieldTo.text = Currency.list[2].name
     }
 
     // MARK: - Actions
     @IBAction func convert(_ sender: Any) {
+        toggleActivityIndicator(shown: true)
         amountTextFieldShouldReturn(textField: amountFrom)
     }
 
@@ -64,16 +68,24 @@ class ChangeViewController: UIViewController {
     // MARK: - Delegate Pattern
 extension ChangeViewController: ViewDelegate {
     func updateView() {
+        toggleActivityIndicator(shown: false)
         guard let data = changeManager.data, !data.date.isEmpty else {
             return self.presentAlert(title: "Erreur", message: "Aucune données.")
     }
-        amountTo.text = "\(changeManager.data!.result)"
-        exchangeRateFrom.text = "1 \(changeManager.data!.query.from) = \(changeManager.data!.info.rate) \(changeManager.data!.query.to)"
+        amountTo.text = "\(data.result)"
+
+        exchangeRateFrom.text = "1 \(data.query.from) = \(data.info.rate) \(data.query.to)"
+
+        exchangeRateTo.text = "1 \(data.query.to) = \(1/(data.info.rate)) \(data.query.from)"
     }
     func presentAlert(title: String, message: String) {
         let alertVC = UIAlertController(title: title, message: message, preferredStyle: .alert)
         alertVC.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
         present(alertVC, animated: true, completion: nil)
+    }
+    internal func toggleActivityIndicator(shown: Bool) {
+        convertButton.isUserInteractionEnabled = !shown
+        activityIndicator.isHidden = !shown
     }
 }
 
@@ -117,7 +129,6 @@ extension ChangeViewController: UIPickerViewDataSource, UIPickerViewDelegate, UI
         }
         textField.resignFirstResponder()
         changeManager.getData(amountToChange: amountTochange)
-        // callChangeNetworkServices(with: amountTochange)
         return
     }
 }

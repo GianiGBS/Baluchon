@@ -6,26 +6,28 @@
 //
 
 import Foundation
-struct Currentlocation {
+// MARK: - CurrentLocation
+struct CurrentLocation {
 
-    static var latitude = "48.85679"
-    static var longitude = "2.35108"
+    static var latitude = ""
+    static var longitude = ""
+
+    func setCurrentLocation(townLocator: TownLocation) {
+         switch townLocator {
+         case .paris:
+             CurrentLocation.latitude = "48.8534"
+             CurrentLocation.longitude = "2.3488"
+         case .newYork:
+             CurrentLocation.latitude = "40.712784"
+             CurrentLocation.longitude = "-74.005941"
+         case .townlocation:
+             LocationService.shared.getLocation()
+         }
+    }
 }
-
-func setLatitude(lat: Double) {
-        Currentlocation.latitude =  String(lat)
-    }
-func setLongitude(lon: Double) {
-        Currentlocation.longitude = String(lon)
-    }
-
-// switch townLocator {
-// case .paris:
-//    Geolocation.latitude = "48.85679"
-//    Geolocation.longitude = "2.35108"
-// case .newYork:
-//    Geolocation.latitude = "48.85679"
-//    Geolocation.longitude = "2.35108"
-// default:
-//    <#code#>
-// }
+// MARK: - TownLocation
+enum TownLocation {
+    case paris
+    case newYork
+    case townlocation
+}

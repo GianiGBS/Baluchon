@@ -13,7 +13,7 @@ class OpenWeatherAPI {
     // MARK: - Properties
     private static let endpoint = "https://api.openweathermap.org/data/2.5/weather"
     private static var parameter: String {
-        return "?lat=\(Currentlocation.latitude)&lon=\(Currentlocation.longitude)&units=metric"
+        return "?lat=\(CurrentLocation.latitude)&lon=\(CurrentLocation.longitude)&units=metric"
     }
     private static let accessKey = "&appid=\(verifiedKey(accesKey: "API_WEATHER_KEY"))"
     static var url: String {

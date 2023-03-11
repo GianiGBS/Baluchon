@@ -6,25 +6,23 @@
 //
 
 import Foundation
+
 // MARK: - Google translate API
-
 class TranslateService {
-    // MARK: - Properties
 
+    // MARK: - Properties
     static var shared = TranslateService()
     private init() {}
     private var task: URLSessionDataTask?
     private var translateSession = URLSession(configuration: .default)
 
     // MARK: - Initialization
-
     init(translateSession: URLSession) {
         self.translateSession = translateSession
     }
 
     // MARK: - Methods
-
-    func getTranslate(with text: String, callback: @escaping(Bool, String?) -> Void) {
+    func getTranslate(with text: String, callback: @escaping(Bool, Translate?) -> Void) {
 
         let encodingText = text.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed)
         let allURL = GoogleTranslateAPI.url + encodingText!
@@ -48,7 +46,9 @@ class TranslateService {
                     return
                 }
                 print(responseJSON)
-                callback(true, responseJSON.data.translations[0].translatedText)
+                let translate = responseJSON
+                callback(true, translate)
+                // responseJSON.data.translations[0].translatedText
             }
         }
         task?.resume()

@@ -17,10 +17,12 @@ class WeatherManager {
 
     // MARK: Methods
     public func getData() {
+        self.delegate?.toggleActivityIndicator(shown: true)
         weatherService.getWeather { success, ephemeride in
+            self.delegate?.toggleActivityIndicator(shown: false)
             guard let ephemeride = ephemeride, success == true else {
                         self.delegate?.presentAlert(title: "Echec de l'appel",
-                                                    message: "Google n'a pas répondu.\nVeuillez réessayer.")
+                                                    message: "OpenWeather n'a pas répondu.\nVeuillez réessayer.")
                         return
                     }
             self.data = ephemeride

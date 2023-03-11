@@ -3,7 +3,7 @@
 //  Baluchon
 //
 //  Created by Giovanni Gabriel on 30/10/2022.
-//
+// swiftlint:disable identifier_name
 
 import Foundation
 
@@ -30,7 +30,7 @@ struct Clouds: Codable {
 
 // MARK: - Coord
 struct Coord: Codable {
-    let lon, lat: Double
+    let lat, lon: Double
 }
 
 // MARK: - Main
