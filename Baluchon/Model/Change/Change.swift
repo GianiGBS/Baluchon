@@ -14,14 +14,14 @@ struct Change: Decodable {
     let query: Query
     let info: Info
     let date: String
-    let result: Decimal
+    let result: Double
 }
 
 // MARK: - Query
 struct Query: Decodable {
     let from: String
     let to: String
-    let amount: Decimal
+    let amount: Double
 }
 
 // MARK: - Info

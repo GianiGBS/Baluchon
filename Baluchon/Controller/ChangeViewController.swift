@@ -36,8 +36,6 @@ class ChangeViewController: UIViewController {
         changeManager.delegate = self
         setPickerView()
         tagPickerView()
-//        changeMoneyFromPickerView.selectRow(0, inComponent: 0, animated: true)
-//        changeMoneyToPickerView.selectRow(2, inComponent: 0, animated: true)
         textFieldFrom.text = Currency.list[0].name
         textFieldTo.text = Currency.list[2].name
     }
@@ -72,11 +70,11 @@ extension ChangeViewController: ViewDelegate {
         guard let data = changeManager.data, !data.date.isEmpty else {
             return self.presentAlert(title: "Erreur", message: "Aucune données.")
     }
-        amountTo.text = "\(data.result)"
+        amountTo.text = "\(round(Double(data.result) * 100)/100.0)"
 
-        exchangeRateFrom.text = "1 \(data.query.from) = \(data.info.rate) \(data.query.to)"
+        exchangeRateFrom.text = "1 \(data.query.from) = \(round(Double(data.info.rate) * 100)/100.0) \(data.query.to)"
 
-        exchangeRateTo.text = "1 \(data.query.to) = \(1/(data.info.rate)) \(data.query.from)"
+        exchangeRateTo.text = "1 \(data.query.to) = \(round((1/(data.info.rate)) * 100)/100.0) \(data.query.from)"
     }
     func presentAlert(title: String, message: String) {
         let alertVC = UIAlertController(title: title, message: message, preferredStyle: .alert)

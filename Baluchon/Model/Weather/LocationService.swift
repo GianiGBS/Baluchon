@@ -12,9 +12,9 @@ class LocationService: NSObject, CLLocationManagerDelegate {
 
     // MARK: - Properties
     static var shared = LocationService()
-    let location = CLLocationManager()
-    var currentlocation: CLLocation?
-    let weatherManager = WeatherManager()
+    private let location = CLLocationManager()
+    private var currentlocation: CLLocation?
+    private let weatherManager = WeatherManager()
     var latitude = ""
     var longitude = ""
 
