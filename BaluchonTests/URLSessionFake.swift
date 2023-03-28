@@ -5,9 +5,9 @@
 //  Created by Giovanni Gabriel on 14/03/2023.
 //
 
-import XCTest
-@testable import Baluchon
+import Foundation
 
+// MARK: - URLSession
 class URLSessionFake: URLSession {
     var data: Data?
     var response: URLResponse?
@@ -23,6 +23,9 @@ class URLSessionFake: URLSession {
                            completionHandler: @escaping (Data?, URLResponse?, Error?) -> Void) -> URLSessionDataTask {
         let task = URLSessionDataTaskFake()
         task.completionHandler = completionHandler
+        task.data = data
+        task.urlResponse = response
+        task.responseError = error
         return task
     }
 
@@ -30,11 +33,15 @@ class URLSessionFake: URLSession {
                            completionHandler: @escaping (Data?, URLResponse?, Error?) -> Void) -> URLSessionDataTask {
         let task = URLSessionDataTaskFake()
         task.completionHandler = completionHandler
+        task.data = data
+        task.urlResponse = response
+        task.responseError = error
         return task
 
     }
 }
 
+// MARK: - DataTask
 class URLSessionDataTaskFake: URLSessionDataTask {
     var completionHandler: ((Data?, URLResponse?, Error?) -> Void)?
 
@@ -46,6 +53,5 @@ class URLSessionDataTaskFake: URLSessionDataTask {
         completionHandler?(data, urlResponse, responseError)
     }
     override func cancel() {
-        <#code#>
     }
 }

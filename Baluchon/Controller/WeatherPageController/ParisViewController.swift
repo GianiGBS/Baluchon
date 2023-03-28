@@ -30,6 +30,7 @@ class ParisViewController: UIViewController {
     }
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
+        currentLocationParis.setCurrentLocation(townLocator: .paris)
     }
     // MARK: - Actions
     @IBAction func refresh(_ sender: Any) {
@@ -47,9 +48,19 @@ extension ParisViewController: ViewDelegate {
             return self.presentAlert(title: "Erreur", message: "Aucune données.")
 
         }
-        temperature.text = "\(data.main.temp)°"
-        mainWeather.text = "\(data.weather[0].main)"
-        cityAndCountry.text = "\(data.name), \(data.sys.country)"
+        if let temp = data.main.temp {
+            temperature.text = "\(Int(round(temp)))°"
+        }
+        if let main = data.weather[0].main {
+            mainWeather.text = "\(main)"
+        }
+        if let city = data.name, let country = data.sys.country {
+            cityAndCountry.text = "\(city), \(country)"
+        }
+        if let image = data.weather[0].icon {
+            self.icon.image = UIImage(systemName: "\(String(describing: icons["\(image)"]!))")
+            // self.viewBackground.backgroundColor = color["\(image)"]
+        }
     }
     func presentAlert(title: String, message: String) {
         let alertVC = UIAlertController(title: title, message: message, preferredStyle: .alert)

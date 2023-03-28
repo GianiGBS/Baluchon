@@ -44,6 +44,10 @@
 		C2D1985C2993143C0033AFC4 /* ParisViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2D1985B2993143C0033AFC4 /* ParisViewController.swift */; };
 		C2D1985E299315880033AFC4 /* NewYorkViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2D1985D299315880033AFC4 /* NewYorkViewController.swift */; };
 		C2D198652996944B0033AFC4 /* LocationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2D198642996944B0033AFC4 /* LocationViewController.swift */; };
+		C2E8CA8F29C8DE45002E5A89 /* MockURLProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2E8CA8E29C8DE45002E5A89 /* MockURLProtocol.swift */; };
+		C2E8CA9329CE30E3002E5A89 /* MockChangeServiceTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2E8CA9229CE30E3002E5A89 /* MockChangeServiceTest.swift */; };
+		C2E8CA9529CFE3E2002E5A89 /* MockTranslateServiceTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2E8CA9429CFE3E2002E5A89 /* MockTranslateServiceTest.swift */; };
+		C2E8CA9729CFE410002E5A89 /* MockWeatherServiceTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2E8CA9629CFE410002E5A89 /* MockWeatherServiceTest.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -98,6 +102,10 @@
 		C2D1985B2993143C0033AFC4 /* ParisViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParisViewController.swift; sourceTree = "<group>"; };
 		C2D1985D299315880033AFC4 /* NewYorkViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewYorkViewController.swift; sourceTree = "<group>"; };
 		C2D198642996944B0033AFC4 /* LocationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationViewController.swift; sourceTree = "<group>"; };
+		C2E8CA8E29C8DE45002E5A89 /* MockURLProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockURLProtocol.swift; sourceTree = "<group>"; };
+		C2E8CA9229CE30E3002E5A89 /* MockChangeServiceTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockChangeServiceTest.swift; sourceTree = "<group>"; };
+		C2E8CA9429CFE3E2002E5A89 /* MockTranslateServiceTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockTranslateServiceTest.swift; sourceTree = "<group>"; };
+		C2E8CA9629CFE410002E5A89 /* MockWeatherServiceTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockWeatherServiceTest.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -124,6 +132,7 @@
 			children = (
 				C27DE2CB29AF913E008C9F8D /* ChangeServiceTest.swift */,
 				C210C4ED29C0B52E00EA5AC2 /* Change.json */,
+				C2E8CA9229CE30E3002E5A89 /* MockChangeServiceTest.swift */,
 			);
 			path = ChangeTests;
 			sourceTree = "<group>";
@@ -133,6 +142,7 @@
 			children = (
 				C27DE2CD29AF915E008C9F8D /* TranslateServiceTest.swift */,
 				C210C4EF29C0B55600EA5AC2 /* Translate.json */,
+				C2E8CA9429CFE3E2002E5A89 /* MockTranslateServiceTest.swift */,
 			);
 			path = TranslateTest;
 			sourceTree = "<group>";
@@ -142,6 +152,7 @@
 			children = (
 				C27DE2CF29AF917D008C9F8D /* WeatherServiceTest.swift */,
 				C210C4F129C0B58000EA5AC2 /* Weather.json */,
+				C2E8CA9629CFE410002E5A89 /* MockWeatherServiceTest.swift */,
 			);
 			path = WeatherTest;
 			sourceTree = "<group>";
@@ -196,6 +207,7 @@
 			children = (
 				C210C4F629C0B6A800EA5AC2 /* FakeResponseData.swift */,
 				C210C4F829C0BFA700EA5AC2 /* URLSessionFake.swift */,
+				C2E8CA8E29C8DE45002E5A89 /* MockURLProtocol.swift */,
 				C210C4F329C0B63200EA5AC2 /* ChangeTests */,
 				C210C4F429C0B64700EA5AC2 /* TranslateTest */,
 				C210C4F529C0B65B00EA5AC2 /* WeatherTest */,
@@ -406,8 +418,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				C27DE2CE29AF915E008C9F8D /* TranslateServiceTest.swift in Sources */,
+				C2E8CA9329CE30E3002E5A89 /* MockChangeServiceTest.swift in Sources */,
+				C2E8CA9529CFE3E2002E5A89 /* MockTranslateServiceTest.swift in Sources */,
 				C210C4F729C0B6A800EA5AC2 /* FakeResponseData.swift in Sources */,
 				C27DE2D029AF917D008C9F8D /* WeatherServiceTest.swift in Sources */,
+				C2E8CA8F29C8DE45002E5A89 /* MockURLProtocol.swift in Sources */,
+				C2E8CA9729CFE410002E5A89 /* MockWeatherServiceTest.swift in Sources */,
 				C210C4F929C0BFA700EA5AC2 /* URLSessionFake.swift in Sources */,
 				C27DE2CC29AF913E008C9F8D /* ChangeServiceTest.swift in Sources */,
 			);

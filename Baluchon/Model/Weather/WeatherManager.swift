@@ -10,12 +10,12 @@ import Foundation
 // MARK: - Weather Location
 class WeatherManager {
 
-    // MARK: Properties
+    // MARK: - Properties
     var data: Ephemeride?
     let weatherService = WeatherService.shared
     public weak var delegate: ViewDelegate?
 
-    // MARK: Methods
+    // MARK: - Methods
     public func getData() {
         self.delegate?.toggleActivityIndicator(shown: true)
         weatherService.getWeather { success, ephemeride in

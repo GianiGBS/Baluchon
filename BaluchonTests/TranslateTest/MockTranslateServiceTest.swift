@@ -1,21 +1,33 @@
 //
-//  TranslateServiceTest.swift
+//  MockTranslateServiceTest.swift
 //  BaluchonTests
 //
-//  Created by Giovanni Gabriel on 01/03/2023.
+//  Created by Giovanni Gabriel on 25/03/2023.
 //
+// swiftlint:disable unused_closure_parameter
 
 import XCTest
 @testable import Baluchon
 
-class TranslateServiceTestCase: XCTestCase {
+class MockTranslateServiceTestCase: XCTestCase {
+
+    var translateService: TranslateService!
+
+    override func setUp() {
+        let configuration = URLSessionConfiguration.ephemeral
+        configuration.protocolClasses = [MockURLProtocol.self]
+        let urlSession = URLSession.init(configuration: configuration)
+
+        translateService = TranslateService(translateSession: urlSession)
+      }
     func testGetTranslateShouldPostFailedCallbackIfError() {
         // Given
-        let translateService = TranslateService(translateSession: URLSessionFake(
-            data: nil,
-            response: nil,
-            error: FakeResponseData.error))
-
+        MockURLProtocol.requestHandler = { request in
+            let data: Data? = nil
+            let response: HTTPURLResponse? = nil
+            let error: Error? = FakeResponseData.error
+            return (data, response, error)
+        }
         // When
         let expectation = XCTestExpectation(description: "Wait for queue change")
         translateService.getTranslate(with: "error") { success, translate in
@@ -24,16 +36,16 @@ class TranslateServiceTestCase: XCTestCase {
             XCTAssertNil(translate)
             expectation.fulfill()
         }
-        wait(for: [expectation], timeout: 0.01)
+        wait(for: [expectation], timeout: 1.0)
     }
-
     func testGetTranslateShouldPostFailedCallbackIfNoData() {
         // Given
-        let translateService = TranslateService(translateSession: URLSessionFake(
-            data: nil,
-            response: nil,
-            error: nil))
-
+        MockURLProtocol.requestHandler = { request in
+            let data: Data? = nil
+            let response: HTTPURLResponse? = nil
+            let error: Error? = nil
+            return (data, response, error)
+        }
         // When
         let expectation = XCTestExpectation(description: "Wait for queue change")
         translateService.getTranslate(with: "error") { success, translate in
@@ -42,16 +54,16 @@ class TranslateServiceTestCase: XCTestCase {
             XCTAssertNil(translate)
             expectation.fulfill()
         }
-        wait(for: [expectation], timeout: 0.01)
+        wait(for: [expectation], timeout: 1.0)
     }
-
     func testGetTranslateShouldPostFailedCallbackIfIncorrectResponse() {
         // Given
-        let translateService = TranslateService(translateSession: URLSessionFake(
-            data: FakeResponseData.translateCorrectData,
-            response: FakeResponseData.responseKO,
-            error: nil))
-
+        MockURLProtocol.requestHandler = { request in
+            let data: Data? = FakeResponseData.translateCorrectData
+            let response: HTTPURLResponse? = FakeResponseData.responseKO
+            let error: Error? = nil
+            return (data, response, error)
+        }
         // When
         let expectation = XCTestExpectation(description: "Wait for queue change")
         translateService.getTranslate(with: "error") { success, translate in
@@ -62,14 +74,14 @@ class TranslateServiceTestCase: XCTestCase {
         }
         wait(for: [expectation], timeout: 0.01)
     }
-
     func testGetTranslateShouldPostFailedCallbackIfIncorrectData() {
         // Given
-        let translateService = TranslateService(translateSession: URLSessionFake(
-            data: FakeResponseData.incorrectData,
-            response: FakeResponseData.responseOK,
-            error: nil))
-
+        MockURLProtocol.requestHandler = { request in
+            let data: Data? = FakeResponseData.incorrectData
+            let response: HTTPURLResponse? = FakeResponseData.responseOK
+            let error: Error? = nil
+            return (data, response, error)
+        }
         // When
         let expectation = XCTestExpectation(description: "Wait for queue change")
         translateService.getTranslate(with: "error") { success, translate in
@@ -80,14 +92,14 @@ class TranslateServiceTestCase: XCTestCase {
         }
         wait(for: [expectation], timeout: 0.01)
     }
-
     func testGetTranslateShouldPostSuccessCallbackIfNoErrorAndCorrectData() {
         // Given
-        let translateService = TranslateService(translateSession: URLSessionFake(
-            data: FakeResponseData.translateCorrectData,
-            response: FakeResponseData.responseOK,
-            error: nil))
-
+        MockURLProtocol.requestHandler = { request in
+            let data: Data? = FakeResponseData.translateCorrectData
+            let response: HTTPURLResponse? = FakeResponseData.responseOK
+            let error: Error? = nil
+            return (data, response, error)
+        }
         // When
         let expectation = XCTestExpectation(description: "Wait for queue change")
         translateService.getTranslate(with: "error") { success, translate in
@@ -97,7 +109,7 @@ class TranslateServiceTestCase: XCTestCase {
             XCTAssertTrue(success)
             XCTAssertNotNil(translate)
 
-            XCTAssertEqual(text, translate!.data.translations[0].translatedText)
+            XCTAssertEqual(text, translate?.data.translations[0].translatedText)
 
             expectation.fulfill()
         }

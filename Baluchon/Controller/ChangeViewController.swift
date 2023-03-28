@@ -74,7 +74,7 @@ extension ChangeViewController: ViewDelegate {
 
         exchangeRateFrom.text = "1 \(data.query.from) = \(round(Double(data.info.rate) * 100)/100.0) \(data.query.to)"
 
-        exchangeRateTo.text = "1 \(data.query.to) = \(round((1/(data.info.rate)) * 100)/100.0) \(data.query.from)"
+        exchangeRateTo.text = "1 \(data.query.to) = \(round((1/Double(data.info.rate)) * 100)/100.0) \(data.query.from)"
     }
     func presentAlert(title: String, message: String) {
         let alertVC = UIAlertController(title: title, message: message, preferredStyle: .alert)

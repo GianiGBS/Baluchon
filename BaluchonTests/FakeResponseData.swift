@@ -24,7 +24,7 @@ class FakeResponseData {
     static let error = BasicError()
 
     // MARK: - Change
-    static var quoteCorrectData: Data {
+    static var changeCorrectData: Data {
         let bundle = Bundle(for: FakeResponseData.self)
         let url = bundle.url(forResource: "Change", withExtension: "json")
         let data = try! Data(contentsOf: url!)
