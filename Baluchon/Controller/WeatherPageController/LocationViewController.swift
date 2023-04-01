@@ -31,6 +31,7 @@ class LocationViewController: UIViewController {
     }
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
+        currentLocation.setCurrentLocation(townLocator: .townlocation)
     }
     // MARK: - Actions
     @IBAction func refresh(_ sender: Any) {
@@ -58,7 +59,7 @@ extension LocationViewController: ViewDelegate {
         }
         if let image = data.weather[0].icon {
             self.icon.image = UIImage(systemName: "\(String(describing: icons["\(image)"]!))")
-            // self.viewBackground.backgroundColor = color["\(image)"]
+                self.viewBackground.backgroundColor = UIColor(named: "\(image)")
         }
     }
     func presentAlert(title: String, message: String) {

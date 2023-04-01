@@ -58,7 +58,7 @@ extension NewYorkViewController: ViewDelegate {
         }
         if let image = data.weather[0].icon {
             self.icon.image = UIImage(systemName: "\(String(describing: icons["\(image)"]!))")
-            // self.viewBackground.backgroundColor = color["\(image)"]
+            self.viewBackground.backgroundColor = UIColor(named: "\(image)")
         }
     }
     func presentAlert(title: String, message: String) {
